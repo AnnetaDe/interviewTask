@@ -21,11 +21,12 @@ li {
 body {
   font-family: 'Inter', sans-serif;
   font-weight: 400;
+  font-size: 16px;
+  color: var(--text);
 }
 
 input[type="checkbox"] {
-  width: 18px;
-  height: 18px;
-  accent-color: var(--accents);
-  border: 1px solid var(--accents);
+  display: none;
+  
+  
 }

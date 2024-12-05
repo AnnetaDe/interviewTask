@@ -16,6 +16,8 @@ export const selectFilteredTasks = createSelector(
                 return todos;
             case 'completed':
                 return todos.filter(todo => todo.isdone);
+            case 'active':
+                return todos.filter(todo => !todo.isdone);
             
             default:
                 return todos;

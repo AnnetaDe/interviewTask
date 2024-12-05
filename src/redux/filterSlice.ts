@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 interface FilterState {
-    filter: 'all' | 'completed';
+    filter: 'all' | 'completed'| 'active';
 }
     
 const initialState:FilterState = {

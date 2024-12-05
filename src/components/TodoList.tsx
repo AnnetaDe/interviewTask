@@ -5,7 +5,7 @@ import Task from './Task';
 import { addTask } from '../redux/todoOperations';
 import { ITodo } from '../types/todo.types';
 import AddTaskForm from './AddTaskForm';
-import ButtonFilter from './ButtonFilter';
+import ButtonsFilter from './ButtonsFilter';
 import { setNewFilter } from '../redux/filterSlice';
 
 const TodoList: React.FC = () => {
@@ -30,22 +30,26 @@ const TodoList: React.FC = () => {
     const newFilter = currentFilter === 'completed' ? 'all' : 'completed';
     dispatch(setNewFilter(newFilter));
   };
+  const handleHideDone = () => {
+    const newFilter = currentFilter === 'all' ? 'active' : 'all';
+    dispatch(setNewFilter(newFilter));
+  };
 
   return (
-    <div className="">
+    <div className="w-43">
       <AddTaskForm
         task={newTask}
         handleAddTask={handleAddTask}
         onAddInputChange={e => setNewTask(e.target.value)}
       />
-      <ButtonFilter
-        text={currentFilter === 'all' ? 'Show Done' : 'Show All'}
+      <ButtonsFilter
         onClick={handleShowDone}
-        ariaLabel={currentFilter === 'all' ? 'Show Done' : 'Show All'}
-        className="bg-teal-500 text-white px-4 py-2 rounded-md"
+        onClickHide={handleHideDone}
+        textDone={currentFilter === 'completed' ? 'Show All' : 'Show Done'}
+        textActive={currentFilter === 'active' ? 'Show All' : 'Hide completed'}
       />
 
-      <ul className="space-y-4 p-6 bg-white rounded-lg shadow-md w-[454px] max-h-[400px] overflow-y-auto scrollbar-thin">
+      <ul className="space-y-4 p-6 bg-white rounded-lg shadow-md w-[285px] max-h-[400px] overflow-y-auto scrollbar-thin">
         {todoList.map(todo => (
           <Task todo={todo} key={todo.id} />
         ))}
