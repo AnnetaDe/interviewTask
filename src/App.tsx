@@ -1,5 +1,20 @@
+import React from 'react';
+import { useAppDispatch } from './redux/reduxHooks';
+import { fetchTodos } from './redux/todoOperations';
+import TodoList from './components/TodoList';
+import TodoDashboard from './components/TodoDashboard';
+
 const App = () => {
-  return <div>app</div>;
+  const dispatch = useAppDispatch();
+  React.useEffect(() => {
+    dispatch(fetchTodos());
+  }, [dispatch]);
+
+  return (
+    <div>
+      <TodoList />
+    </div>
+  );
 };
 
 export default App;
