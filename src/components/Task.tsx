@@ -23,15 +23,14 @@ const Task: React.FC<{ todo: ITodo }> = ({ todo }) => {
   };
 
   return (
-    <li className="flex items-center justify-between p-1 " key={todo.id}>
+    <li className="flex items-center justify-items-start px-6" key={todo.id}>
       <TaskControllers todo={todo} />
-      <div className="flex grow">
+      <div className="flex ">
         {isEditing ? (
           <input
             type="text"
             autoComplete="off"
             value={updatedTask}
-            className="border p-1 rounded-md w-full"
             onChange={handleChanges}
             onBlur={handleBlur}
           />

@@ -48,23 +48,24 @@ const TodoList: React.FC = () => {
         onClickHide={handleHideDone}
         textDone={currentFilter === 'completed' ? 'Show All' : 'Show Done'}
         textActive={currentFilter === 'active' ? 'Show All' : 'Hide completed'}
-        classNameShow={`px-3 py-1 rounded-md transition-all w-28 h-8 text-xs ${
+        classNameShow={`px-2 py-1 rounded-md transition-all w-28 h-8 text-xs ${
           isFilterApplied && currentFilter === 'completed'
             ? 'bg-teal-500 text-white-100'
             : 'bg-transparent text-gray-500 border border-gray-300 shadow-md'
         }`}
-        classNameHide={`px-3 py-1 rounded-md transition-all w-28 h-8 text-xs ${
+        classNameHide={`px-2 py-1 rounded-md transition-all w-28 h-8 text-xs ${
           isFilterApplied && currentFilter === 'active'
             ? 'bg-teal-500 text-white-100'
             : 'bg-transparent text-gray-500 border border-gray-300 shadow-md'
         }`}
       />
-
-      <ul className="space-y-4 p-6 bg-white rounded-lg shadow-md w-[285px] max-h-[400px] overflow-y-auto scrollbar-thin">
-        {todoList.map(todo => (
-          <Task todo={todo} key={todo.id} />
-        ))}
-      </ul>
+      <div className="border rounded-lg shadow-md p-1">
+        <ul className="space-y-4 bg-white  w-[273px] h-[400px] overflow-y-auto scrollbar-thin py-5  ">
+          {todoList.map(todo => (
+            <Task todo={todo} key={todo.id} />
+          ))}
+        </ul>
+      </div>
     </div>
   );
 };

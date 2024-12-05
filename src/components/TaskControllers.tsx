@@ -16,7 +16,7 @@ const TaskControllers: React.FC<{ todo: ITodo }> = ({ todo }) => {
           }
         />
         <span
-          className={`w-5 h-5 border-2 rounded-lg flex items-center justify-center mr-2 transition-all ${
+          className={`w-5 h-5 border-2 rounded-lg flex items-center justify-center mr-2 transition-all  ${
             todo.isdone ? 'bg-teal-500 border-teal-500' : ''
           }`}
         >
@@ -37,7 +37,7 @@ const TaskControllers: React.FC<{ todo: ITodo }> = ({ todo }) => {
         </span>
       </label>
       <button
-        className="cursor-pointer hover:text-gray-900"
+        className="cursor-pointer"
         onClick={() => dispatch(deleteTask(todo))}
       >
         <svg

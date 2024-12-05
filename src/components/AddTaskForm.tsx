@@ -12,25 +12,28 @@ const AddTaskForm: React.FC<AddTaskFormProps> = ({
   onAddInputChange,
 }) => {
   return (
-    <div className="relative">
+    <label
+      htmlFor="task"
+      className="flex text-sm relative w-full  p-1 border rounded-md border-gray-300 shadow-md focus:outline-none"
+    >
       <input
+        id="task"
         type="text"
         placeholder="New task input"
         value={task}
         onChange={onAddInputChange}
-        className="h-10 px-4 rounded-md text-gray-500
-        border border-gray-300 shadow-md"
+        className=" rounded-md text-gray-500  block w-full p-1 outline-none cursor-text"
       />
       <button
         onClick={handleAddTask}
-        className="px-4 py-4 rounded-md absolute right-1 top-1 transform -translate-x-1/2"
+        className="p-1 rounded-md absolute right-1 top-1 "
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
-          className="absolute right-2 top-1/2 transform -translate-y-1/2 w-6 h-6 text-gray-300 focus:outline-none"
+          className=" w-6 h-6 text-gray-300 focus:outline-none"
         >
           <path
             strokeLinecap="round"
@@ -40,7 +43,7 @@ const AddTaskForm: React.FC<AddTaskFormProps> = ({
           />
         </svg>
       </button>
-    </div>
+    </label>
   );
 };
 
