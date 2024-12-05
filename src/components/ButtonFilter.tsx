@@ -17,7 +17,7 @@ const ButtonFilter: React.FC<IButtonFilter> = ({
     <button
       onClick={onClick}
       aria-label={ariaLabel}
-      className={`px-4 py-2 rounded-md focus:outline-none focus:ring-2 ${className}`}
+      className={`px-4 py-2 rounded-md ${className}`}
     >
       {text}
     </button>

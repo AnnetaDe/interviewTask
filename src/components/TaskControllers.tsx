@@ -8,6 +8,7 @@ const TaskControllers: React.FC<{ todo: ITodo }> = ({ todo }) => {
   return (
     <div>
       <input
+        className="mr-2 w-full cursor-pointer  border border-teal bg-teal-500 rounded-xl"
         type="checkbox"
         checked={todo.isdone}
         onChange={() => dispatch(updateTask({ ...todo, isdone: !todo.isdone }))}

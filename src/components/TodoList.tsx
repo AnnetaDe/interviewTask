@@ -1,16 +1,19 @@
 import React, { useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../redux/reduxHooks';
-import { selectTodos } from '../redux/selectors';
+import { selectCurrentFilter, selectFilteredTasks } from '../redux/selectors';
 import Task from './Task';
 import { addTask } from '../redux/todoOperations';
 import { ITodo } from '../types/todo.types';
 import AddTaskForm from './AddTaskForm';
 import ButtonFilter from './ButtonFilter';
+import { setNewFilter } from '../redux/filterSlice';
 
-const TodoList = () => {
+const TodoList: React.FC = () => {
   const dispatch = useAppDispatch();
-  const todoList = useAppSelector(selectTodos);
+  const todoList = useAppSelector(selectFilteredTasks);
   const [newTask, setNewTask] = useState('');
+  const currentFilter = useAppSelector(selectCurrentFilter);
+
   const handleAddTask = () => {
     if (newTask.trim() === '') {
       return;
@@ -23,16 +26,26 @@ const TodoList = () => {
     dispatch(addTask(newTodo));
     setNewTask('');
   };
+  const handleShowDone = () => {
+    const newFilter = currentFilter === 'completed' ? 'all' : 'completed';
+    dispatch(setNewFilter(newFilter));
+  };
 
   return (
-    <div>
+    <div className="">
       <AddTaskForm
         task={newTask}
         handleAddTask={handleAddTask}
         onAddInputChange={e => setNewTask(e.target.value)}
       />
+      <ButtonFilter
+        text={currentFilter === 'all' ? 'Show Done' : 'Show All'}
+        onClick={handleShowDone}
+        ariaLabel={currentFilter === 'all' ? 'Show Done' : 'Show All'}
+        className="bg-teal-500 text-white px-4 py-2 rounded-md"
+      />
 
-      <ul>
+      <ul className="space-y-4 p-6 bg-white rounded-lg shadow-md w-[454px] max-h-[400px] overflow-y-auto scrollbar-thin">
         {todoList.map(todo => (
           <Task todo={todo} key={todo.id} />
         ))}
