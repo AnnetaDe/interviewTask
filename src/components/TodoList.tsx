@@ -48,12 +48,12 @@ const TodoList: React.FC = () => {
         onClickHide={handleHideDone}
         textDone={currentFilter === 'completed' ? 'Show All' : 'Show Done'}
         textActive={currentFilter === 'active' ? 'Show All' : 'Hide completed'}
-        classNameShow={`px-2 py-1 rounded-md transition-all w-28 h-8 text-xs ${
+        classNameShow={`px-2 py-1 rounded-md transition-all w-28 h-8 text-xs hover:scale-105 transition-all duration-300 ${
           isFilterApplied && currentFilter === 'completed'
             ? 'bg-teal-500 text-white-100'
             : 'bg-transparent text-gray-500 border border-gray-300 shadow-md'
         }`}
-        classNameHide={`px-2 py-1 rounded-md transition-all w-28 h-8 text-xs ${
+        classNameHide={`px-2 py-1 rounded-md transition-all w-28 h-8 text-xs hover:scale-105 transition-all duration-300 ${
           isFilterApplied && currentFilter === 'active'
             ? 'bg-teal-500 text-white-100'
             : 'bg-transparent text-gray-500 border border-gray-300 shadow-md'

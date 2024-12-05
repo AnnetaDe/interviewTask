@@ -26,7 +26,7 @@ const AddTaskForm: React.FC<AddTaskFormProps> = ({
       />
       <button
         onClick={handleAddTask}
-        className="p-1 rounded-md absolute right-1 top-1 "
+        className="p-1 rounded-md absolute right-1 top-1 hover:scale-110 transition-all duration-300 "
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"

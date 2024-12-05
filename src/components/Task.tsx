@@ -10,7 +10,7 @@ const Task: React.FC<{ todo: ITodo }> = ({ todo }) => {
 
   const [isEditing, setIsEditing] = useState(false);
   const [updatedTask, setUpdatedTask] = useState(todo.task);
-  const [debouncedText] = useDebounce(updatedTask.trim(), 1000);
+  const [debouncedText] = useDebounce(updatedTask.trim(), 500);
 
   const handleBlur = () => {
     if (debouncedText && debouncedText !== '' && debouncedText !== todo.task) {
@@ -23,11 +23,12 @@ const Task: React.FC<{ todo: ITodo }> = ({ todo }) => {
   };
 
   return (
-    <li className="flex items-center justify-items-start px-6" key={todo.id}>
+    <li className="flex items-center justify-start pl-6 gap-2" key={todo.id}>
       <TaskControllers todo={todo} />
       <div className="flex ">
         {isEditing ? (
           <input
+            className="outline-none "
             type="text"
             autoComplete="off"
             value={updatedTask}

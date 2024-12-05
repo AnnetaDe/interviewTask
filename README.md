@@ -1,50 +1,47 @@
-# React + TypeScript + Vite
+# todo-app
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+todo-app is a web application that helps users manage tasks effectively. It
+provides features like adding, editing, deleting, and filtering tasks based on
+their completion status. Tasks can be sorted by date, and the user interface is
+clean, responsive, and simple to use.
 
-Currently, two official plugins are available:
+The project is built using React, Redux, and Tailwind CSS, ensuring scalability
+and a responsive design.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Installation To get started with this project, clone the repository and install
+dependencies:
 
-## Expanding the ESLint configuration
+Step 1: Clone the repository bash Copy code git clone cd project-name
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+Step 2: Install dependencies bash Copy code npm install or if you are using
+Yarn:
 
-- Configure the top-level `parserOptions` property like this:
+bash Copy code yarn install Step 3: Run the app Once everything is installed,
+run the app:
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+bash Copy code npm start or with Yarn:
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+bash Copy code yarn start The app will be available at http://localhost:3000.
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+Usage Once the app is running, you can start interacting with it:
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+Add a task: Enter a task name in the input field and click the "Add Task"
+button. Edit a task: Click on the task to start editing it. Mark a task as
+complete: Click on the checkbox next to the task. Filter tasks: Use the filter
+buttons to show all, completed, or active tasks. Delete a task: Click on the
+delete icon to remove a task. Features Task Management: Add, edit, delete tasks.
+Task Completion: Mark tasks as completed or active. Filtering: Filter tasks by
+"All", "Completed", or "Active". Sorting: Tasks are automatically sorted by
+creation date. Responsive Design: Optimized for both mobile and desktop views.
+Persistent State: All tasks are persisted in the app’s state with Redux.
+Technologies This project was built using:
+
+React: For building user interfaces. Redux Toolkit: For state management.
+Tailwind CSS: For utility-first styling. TypeScript: For type safety and better
+code management. use-debounce: For debouncing input fields. Contributing We
+welcome contributions to this project! If you want to help, follow these steps:
+
+Fork the repository. Create a new branch (git checkout -b feature-name). Commit
+your changes (git commit -am 'Add new feature'). Push to the branch (git push
+origin feature-name). Open a Pull Request. Please make sure to follow the
+existing code style and add tests for your changes.
