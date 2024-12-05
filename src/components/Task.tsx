@@ -25,7 +25,7 @@ const Task: React.FC<{ todo: ITodo }> = ({ todo }) => {
   return (
     <li className="flex items-center justify-start pl-6 gap-2" key={todo.id}>
       <TaskControllers todo={todo} />
-      <div className="flex ">
+      <div>
         {isEditing ? (
           <input
             className="outline-none "
