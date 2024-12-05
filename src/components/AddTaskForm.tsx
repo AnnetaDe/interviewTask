@@ -12,17 +12,18 @@ const AddTaskForm: React.FC<AddTaskFormProps> = ({
   onAddInputChange,
 }) => {
   return (
-    <div className="flex items-center gap-2 mt-4 relative mb-2">
+    <div className="relative">
       <input
         type="text"
         placeholder="New task input"
         value={task}
         onChange={onAddInputChange}
-        className="border p-4 rounded-md w-full"
+        className="h-10 px-4 rounded-md text-gray-500
+        border border-gray-300 shadow-md"
       />
       <button
         onClick={handleAddTask}
-        className="px-6 py-6 rounded-md absolute right-1 top-1"
+        className="px-4 py-4 rounded-md absolute right-1 top-1 transform -translate-x-1/2"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"

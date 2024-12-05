@@ -34,9 +34,10 @@ const TodoList: React.FC = () => {
     const newFilter = currentFilter === 'all' ? 'active' : 'all';
     dispatch(setNewFilter(newFilter));
   };
+  const isFilterApplied = currentFilter !== 'all';
 
   return (
-    <div className="w-43">
+    <div className="w-43 flex flex-col items-center space-y-2">
       <AddTaskForm
         task={newTask}
         handleAddTask={handleAddTask}
@@ -47,6 +48,16 @@ const TodoList: React.FC = () => {
         onClickHide={handleHideDone}
         textDone={currentFilter === 'completed' ? 'Show All' : 'Show Done'}
         textActive={currentFilter === 'active' ? 'Show All' : 'Hide completed'}
+        classNameShow={`px-3 py-1 rounded-md transition-all w-28 h-8 text-xs ${
+          isFilterApplied && currentFilter === 'completed'
+            ? 'bg-teal-500 text-white-100'
+            : 'bg-transparent text-gray-500 border border-gray-300 shadow-md'
+        }`}
+        classNameHide={`px-3 py-1 rounded-md transition-all w-28 h-8 text-xs ${
+          isFilterApplied && currentFilter === 'active'
+            ? 'bg-teal-500 text-white-100'
+            : 'bg-transparent text-gray-500 border border-gray-300 shadow-md'
+        }`}
       />
 
       <ul className="space-y-4 p-6 bg-white rounded-lg shadow-md w-[285px] max-h-[400px] overflow-y-auto scrollbar-thin">

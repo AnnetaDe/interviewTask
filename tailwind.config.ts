@@ -19,6 +19,9 @@ const config: Config = {
           100: '#fff'
         }
       },
+      fontFamily: {
+        sans: ['Inter', 'sans-serif']
+      },
      
     },
   },

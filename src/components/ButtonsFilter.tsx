@@ -5,7 +5,8 @@ interface IButtonsFilter {
   textActive: string;
   onClick: () => void;
   onClickHide: () => void;
-  className?: string;
+  classNameShow?: string;
+  classNameHide?: string;
 }
 
 const ButtonsFilter: React.FC<IButtonsFilter> = ({
@@ -13,19 +14,15 @@ const ButtonsFilter: React.FC<IButtonsFilter> = ({
   onClickHide,
   textDone,
   textActive,
+  classNameShow,
+  classNameHide,
 }) => {
   return (
     <div className="flex gap-2 mb-5">
-      <button
-        onClick={onClick}
-        className={' bg-teal-500 text-white-100 px-2 py-1 rounded-md'}
-      >
+      <button onClick={onClick} className={classNameShow}>
         {textDone}
       </button>
-      <button
-        onClick={onClickHide}
-        className={` bg-teal-500 text-white-100 px-2 py-1 rounded-md`}
-      >
+      <button onClick={onClickHide} className={classNameHide}>
         {textActive}
       </button>
     </div>
