@@ -10,17 +10,27 @@ export const selectLoading = (state: RootState) => state.todos.loading;
 
 export const selectFilteredTasks = createSelector(
     [selectTodos, selectCurrentFilter],
-    (todos, filter) => {
+    
+(todos, filter) => {
+        let filtered;
         switch (filter) {
             case 'all':
-                return todos;
+                filtered = todos;
+                break;
             case 'completed':
-                return todos.filter(todo => todo.isdone);
+                filtered = todos.filter(todo => todo.isdone);
+                break
             case 'active':
-                return todos.filter(todo => !todo.isdone);
+                filtered = todos.filter(todo => !todo.isdone);
+                break;
             
             default:
-                return todos;
-        }
+                filtered = todos;
+            break;
+    }
+    return filtered.slice().sort((b, a) => {
+            return new Date(a.createdAt ?? 0).getTime() - new Date(b.createdAt ?? 0).getTime();
+        });
+    
     }
 );

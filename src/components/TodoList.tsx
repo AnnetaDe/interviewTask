@@ -11,6 +11,7 @@ import { setNewFilter } from '../redux/filterSlice';
 const TodoList: React.FC = () => {
   const dispatch = useAppDispatch();
   const todoList = useAppSelector(selectFilteredTasks);
+  console.log(todoList);
   const [newTask, setNewTask] = useState('');
   const currentFilter = useAppSelector(selectCurrentFilter);
 
@@ -22,6 +23,7 @@ const TodoList: React.FC = () => {
       id: Date.now(),
       task: newTask,
       isdone: false,
+      createdAt: new Date(),
     };
     dispatch(addTask(newTodo));
     setNewTask('');
