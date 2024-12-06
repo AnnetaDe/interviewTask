@@ -62,6 +62,9 @@ const TodoList: React.FC = () => {
       />
       <div className="border rounded-lg shadow-md p-1">
         <ul className="space-y-4 bg-white overflow-y-auto scrollbar-thin py-5 px-5 max-h-[500px]">
+          {todoList.length === 0 && (
+            <li className="text-center text-gray-500">No tasks</li>
+          )}
           {todoList.map(todo => (
             <Task todo={todo} key={todo.id} />
           ))}
