@@ -18,7 +18,7 @@ const ButtonsFilter: React.FC<IButtonsFilter> = ({
   classNameHide,
 }) => {
   return (
-    <div className="flex gap-2 mb-5">
+    <div className="mb-5">
       <button onClick={onClick} className={classNameShow}>
         {textDone}
       </button>

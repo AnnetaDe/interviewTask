@@ -38,7 +38,7 @@ const TodoList: React.FC = () => {
   const isFilterApplied = currentFilter !== 'all';
 
   return (
-    <div className="w-43 flex flex-col items-center space-y-2">
+    <div className=" flex-col items-center space-y-2">
       <AddTaskForm
         task={newTask}
         handleAddTask={handleAddTask}
@@ -49,19 +49,19 @@ const TodoList: React.FC = () => {
         onClickHide={handleHideDone}
         textDone={currentFilter === 'completed' ? 'Show All' : 'Show Done'}
         textActive={currentFilter === 'active' ? 'Show All' : 'Hide completed'}
-        classNameShow={`px-2 py-1 rounded-md transition-all w-28 h-8 text-xs hover:scale-105 transition-all duration-300 ${
+        classNameShow={`mr-1 px-2 py-1 rounded-md transition-all w-28 h-8 text-xs hover:scale-105 transition-all duration-300 ${
           isFilterApplied && currentFilter === 'completed'
             ? 'bg-teal-500 text-white-100'
-            : 'bg-transparent text-gray-500 border border-gray-300 shadow-md'
+            : 'bg-transparent text-gray-500 shadow-md'
         }`}
         classNameHide={`px-2 py-1 rounded-md transition-all w-28 h-8 text-xs hover:scale-105 transition-all duration-300 ${
           isFilterApplied && currentFilter === 'active'
             ? 'bg-teal-500 text-white-100'
-            : 'bg-transparent text-gray-500 border border-gray-300 shadow-md'
+            : 'bg-transparent text-gray-500 shadow-md'
         }`}
       />
       <div className="border rounded-lg shadow-md p-1">
-        <ul className="space-y-4 bg-white  w-[273px] h-[400px] overflow-y-auto scrollbar-thin py-5  ">
+        <ul className="space-y-4 bg-white overflow-y-auto scrollbar-thin py-5 px-5 max-h-[500px]">
           {todoList.map(todo => (
             <Task todo={todo} key={todo.id} />
           ))}

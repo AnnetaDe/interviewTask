@@ -23,26 +23,28 @@ const Task: React.FC<{ todo: ITodo }> = ({ todo }) => {
   };
 
   return (
-    <li className="flex items-center justify-start pl-6 gap-2" key={todo.id}>
-      <TaskControllers todo={todo} />
-      <div>
-        {isEditing ? (
-          <input
-            className="outline-none "
-            type="text"
-            autoComplete="off"
-            value={updatedTask}
-            onChange={handleChanges}
-            onBlur={handleBlur}
-          />
-        ) : (
-          <span
-            onClick={() => setIsEditing(true)}
-            className={`cursor-pointer ${todo.isdone ? 'text-teal-500' : ''}`}
-          >
-            {todo.task}
-          </span>
-        )}
+    <li key={todo.id}>
+      <div className="flex items justify-start gap-2 w-full">
+        <TaskControllers todo={todo} />
+        <div>
+          {isEditing ? (
+            <input
+              className="outline-none "
+              type="text"
+              autoComplete="off"
+              value={updatedTask}
+              onChange={handleChanges}
+              onBlur={handleBlur}
+            />
+          ) : (
+            <span
+              onClick={() => setIsEditing(true)}
+              className={`cursor-pointer ${todo.isdone ? 'text-teal-500' : ''}`}
+            >
+              {todo.task}
+            </span>
+          )}
+        </div>
       </div>
     </li>
   );

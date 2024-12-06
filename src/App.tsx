@@ -10,8 +10,12 @@ const App = () => {
   }, [dispatch]);
 
   return (
-    <div className="flex items-center justify-center min-h-screen">
-      <TodoList />
+    <div className="bg-gray-100">
+      <div className="min-h-screen max-w-[485px] flex items-center mx-auto bg-white-100">
+        <div className=" mx-auto ">
+          <TodoList />
+        </div>
+      </div>
     </div>
   );
 };

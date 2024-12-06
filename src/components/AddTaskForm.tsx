@@ -12,9 +12,10 @@ const AddTaskForm: React.FC<AddTaskFormProps> = ({
   onAddInputChange,
 }) => {
   return (
+    // <div className="flex flex-col">
     <label
       htmlFor="task"
-      className="flex text-sm relative w-full  p-1 border rounded-md border-gray-300 shadow-md focus:outline-none"
+      className="flex flex-col text-sm relative p-1 border rounded-md border-gray-300 shadow-md focus:outline-none"
     >
       <input
         id="task"
@@ -22,7 +23,7 @@ const AddTaskForm: React.FC<AddTaskFormProps> = ({
         placeholder="New task input"
         value={task}
         onChange={onAddInputChange}
-        className=" rounded-md text-gray-500  block w-full p-1 outline-none cursor-text"
+        className=" rounded-md text-gray-500 w-full p-1 outline-none cursor-text"
       />
       <button
         onClick={handleAddTask}
@@ -44,6 +45,7 @@ const AddTaskForm: React.FC<AddTaskFormProps> = ({
         </svg>
       </button>
     </label>
+    // </div>
   );
 };
 
