@@ -5,7 +5,7 @@ import { Draggable, Droppable } from '@hello-pangea/dnd';
 interface IKanbanColumn {
   value: string;
   label: string;
-  items: any[];
+  items: ITodo[];
 }
 const KanbanColumn = ({ value, label, items }: IKanbanColumn) => {
   return (

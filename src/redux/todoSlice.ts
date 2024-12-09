@@ -5,6 +5,8 @@ import dayjs from "dayjs";
 
 
 
+type TColumnKeys = "today" | "tomorrow" | "week" | "next week" | "later" | "completed";
+
 interface TodoState {
     todos: ITodo[];
     columns: {
@@ -36,7 +38,12 @@ const todoSlice = createSlice({
     name: 'todos',
     initialState,
     reducers: {
-   
+        updateColumns(state, action:PayloadAction<Partial<Record<TColumnKeys, ITodo[]>>>) {
+            state.columns = {
+                ...state.columns,
+                ...action.payload,
+            };
+        },
     },
    
     extraReducers: (builder) => {
@@ -109,5 +116,5 @@ const todoSlice = createSlice({
    
 });
 
-
+export const { updateColumns } = todoSlice.actions;
 export default todoSlice.reducer;
