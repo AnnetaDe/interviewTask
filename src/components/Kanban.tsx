@@ -30,29 +30,26 @@ const Kanban = () => {
       console.error('Invalid source or destination column ID.');
       return;
     }
-    console.log(sourceColumn, destinationColumnId, draggableId);
     const task = sourceColumn.find(task => task.id.toString() === draggableId);
     if (!task) {
       console.error(`Task with ID ${draggableId} not found in source column.`);
       return;
     }
-    if (sourceColumnId === destinationColumnId) {
-      console.log('Task was dropped in the same column. No changes made.');
-      return;
-    }
+
     if (destinationColumnId === 'completed') {
       dispatch(updateTask({ ...task, isdone: true }));
     }
-
-    const updatedSourceColumn = sourceColumn.filter(
-      task => task.id.toString() !== draggableId
-    );
-    const updatedDestinationColumn = [...destinationColumn, task];
+    if (sourceColumnId === 'completed') {
+      dispatch(updateTask({ ...task, isdone: false }));
+    }
 
     dispatch(
       updateColumns({
-        [sourceColumnId]: updatedSourceColumn,
-        [destinationColumnId as string]: updatedDestinationColumn,
+        source: source,
+        destination: destination as { droppableId: string },
+        dragableItem: {
+          task: task,
+        },
       })
     );
   };

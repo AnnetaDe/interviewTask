@@ -38,12 +38,36 @@ const todoSlice = createSlice({
     name: 'todos',
     initialState,
     reducers: {
-        updateColumns(state, action:PayloadAction<Partial<Record<TColumnKeys, ITodo[]>>>) {
-            state.columns = {
-                ...state.columns,
-                ...action.payload,
-            };
-        },
+        updateColumns(
+        state, 
+        action: PayloadAction<{
+            destination: { droppableId: string };
+            source: { droppableId: string };
+            dragableItem: { task: ITodo };
+        }>
+    ) {
+        const { destination, source, dragableItem } = action.payload;
+
+        const sourceColumnId = source.droppableId;
+        const destinationColumnId = destination.droppableId;
+
+        if (sourceColumnId === destinationColumnId) return;
+
+        const sourceColumn = state.columns[sourceColumnId as TColumnKeys];
+        const destinationColumn = state.columns[destinationColumnId as TColumnKeys];
+
+
+        const updatedSourceTasks = sourceColumn.filter(
+            (task) => task.id !== dragableItem.task.id
+        );
+
+        const updatedDestinationTasks = [...destinationColumn, dragableItem.task];
+
+
+        state.columns[sourceColumnId as TColumnKeys] = updatedSourceTasks;
+        state.columns[destinationColumnId as TColumnKeys] = updatedDestinationTasks;
+    },
+       
     },
    
     extraReducers: (builder) => {
