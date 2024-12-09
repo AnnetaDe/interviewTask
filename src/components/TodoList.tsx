@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../redux/reduxHooks';
 import {
-  selectColumns,
   selectCurrentFilter,
   selectFilteredTasks,
+  selectTodos,
 } from '../redux/selectors';
 import Task from './Task';
 import { addTask } from '../redux/todoOperations';
@@ -16,12 +16,12 @@ import Progress from './Progress';
 const TodoList: React.FC = () => {
   const dispatch = useAppDispatch();
   const todoList = useAppSelector(selectFilteredTasks);
+  const allTasks = useAppSelector(selectTodos);
   const [newTask, setNewTask] = useState('');
   const currentFilter = useAppSelector(selectCurrentFilter);
-  const columns = useAppSelector(selectColumns);
-  const comleted = columns.completed.length;
-  const uncompleted = todoList.length - comleted;
-  const total = todoList.length;
+  const total = allTasks.length;
+  const comleted = allTasks.filter(todo => todo.isdone).length;
+  const uncompleted = total - comleted;
 
   const handleAddTask = () => {
     if (newTask.trim() === '') {
