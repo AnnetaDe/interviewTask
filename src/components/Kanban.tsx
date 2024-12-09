@@ -45,7 +45,7 @@ const Kanban = () => {
     }
 
     const updatedSourceColumn = sourceColumn.filter(
-      task => task.id !== draggableId
+      task => task.id.toString() !== draggableId
     );
     const updatedDestinationColumn = [...destinationColumn, task];
 
