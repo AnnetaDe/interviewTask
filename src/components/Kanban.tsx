@@ -3,7 +3,6 @@ import { selectColumns } from '../redux/selectors';
 import { COLUMNS } from '../dataHelpers/columns.data';
 import KanbanColumn from './KanbanColumn';
 import { DragDropContext, DropResult } from '@hello-pangea/dnd';
-import { updateTask } from '../redux/todoOperations';
 
 type TColumnKeys =
   | 'today'
@@ -21,9 +20,9 @@ const Kanban = () => {
     const destinationColumnId = destination?.droppableId;
     const sourceColumnId = source.droppableId;
     const draggableTaskId = Number(draggableId);
-    const task = columns[sourceColumnId as TColumnKeys].find(
-      task => draggableTaskId === task.id
-    );
+    // const task = columns[sourceColumnId as TColumnKeys].find(
+    //   task => draggableTaskId === task.id
+    // );
 
     console.log(
       columns[sourceColumnId as TColumnKeys],
