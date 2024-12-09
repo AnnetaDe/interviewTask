@@ -1,23 +1,26 @@
 interface ProgressProps {
   total: number;
-  uncompleted: number;
+  completed: number;
 }
-const Progress: React.FC<ProgressProps> = ({ total, uncompleted }) => {
+const Progress: React.FC<ProgressProps> = ({ total, completed }) => {
   return (
-    <div className="flex relative bg-gray-800 h-7 rounded-full w-full overflow-hidden">
-      <div
-        className="bg-teal h-7 rounded-full absolute"
-        style={{
-          width: `${(uncompleted / total) * 100}%`,
-        }}
-      >
-        <p className="absolute inset-0 flex items-center justify-center text-white font-medium">
-          {uncompleted}
-        </p>
+    <div>
+      <div className="flex relative bg-gray-500 h-7 rounded-full w-full overflow-hidden">
+        <div
+          className="bg-teal h-7 rounded-full absolute"
+          style={{
+            width: `${(completed / total) * 100}%`,
+          }}
+        >
+          <span className="absolute inset-0 flex items-center justify-center text-white font-medium">
+            {Math.ceil((completed / total) * 100)}%
+          </span>
+        </div>
+        <span className="absolute inset-2 flex justify-end items-center text-white font-medium">
+          {(total / total) * 100}%
+        </span>
       </div>
-      <p className="absolute inset-0 flex justify-center items-center text-white font-medium">
-        {total}
-      </p>
+      {completed}/{total}
     </div>
   );
 };

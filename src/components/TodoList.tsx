@@ -20,8 +20,7 @@ const TodoList: React.FC = () => {
   const [newTask, setNewTask] = useState('');
   const currentFilter = useAppSelector(selectCurrentFilter);
   const total = allTasks.length;
-  const comleted = allTasks.filter(todo => todo.isdone).length;
-  const uncompleted = total - comleted;
+  const completed = allTasks.filter(todo => todo.isdone).length;
 
   const handleAddTask = () => {
     if (newTask.trim() === '') {
@@ -70,7 +69,7 @@ const TodoList: React.FC = () => {
             : 'bg-transparent text-grey shadow-md'
         }`}
       />
-      <Progress total={total} uncompleted={uncompleted} />
+      <Progress total={total} completed={completed} />
       <div className="border rounded-md p-1 pl-0">
         <ul className="space-y-1 bg-white overflow-y-auto scrollbar-thin py-1 px-1 max-h-[500px]">
           {todoList.length === 0 && (
