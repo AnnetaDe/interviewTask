@@ -3,5 +3,6 @@ export interface ITodo {
     task: string;
     isdone: boolean;
     createdAt?: Date;
-    
+    priority?: 'low' | 'medium' | 'high'| 'none'|string;
+    schedule?: Date;
 }

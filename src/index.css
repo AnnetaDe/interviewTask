@@ -32,6 +32,15 @@ input[type='checkbox'] {
 button {
   cursor: pointer;
   border: none;
-  background: none;
-  box-shadow: none;
+}
+input {
+  outline: none;
+}
+
+input:focus {
+  border-color: var(--accents);
+}
+
+input:not(:focus) {
+  border-color: transparent;
 }

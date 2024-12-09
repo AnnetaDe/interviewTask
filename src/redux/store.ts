@@ -14,9 +14,9 @@ const todoPersistConfig: PersistConfig<ReturnType<typeof todoReducer>> = {
   key: 'todos',
   storage,
 };
+
 const persistedFilterReducer = persistReducer(filterPersistConfig, filterReducer);
 const persistedTodoReducer = persistReducer(todoPersistConfig, todoReducer);
-
 
 const store = configureStore({
     reducer: {

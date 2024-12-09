@@ -1,9 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-interface FilterState {
+interface IFilterState {
     filter: 'all' | 'completed'| 'active';
 }
     
-const initialState:FilterState = {
+const initialState:IFilterState = {
   filter: 'all',
 };
 
@@ -13,7 +13,7 @@ const filterSlice = createSlice({
 
 
   reducers: {
-    setNewFilter: (state, action:PayloadAction<FilterState['filter']>) => {
+    setNewFilter: (state, action:PayloadAction<IFilterState['filter']>) => {
       state.filter = action.payload;
     },
   },

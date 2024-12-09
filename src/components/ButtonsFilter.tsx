@@ -18,7 +18,7 @@ const ButtonsFilter: React.FC<IButtonsFilter> = ({
   classNameHide,
 }) => {
   return (
-    <div className="mb-5">
+    <div className="mb-5 flex justify-between">
       <button onClick={onClick} className={classNameShow}>
         {textDone}
       </button>

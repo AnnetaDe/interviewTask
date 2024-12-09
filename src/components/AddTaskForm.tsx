@@ -15,7 +15,7 @@ const AddTaskForm: React.FC<AddTaskFormProps> = ({
     // <div className="flex flex-col">
     <label
       htmlFor="task"
-      className="flex flex-col text-sm relative p-1 border rounded-md border-gray-300 shadow-md focus:outline-none"
+      className="flex text-sm relative rounded-md focus:outline-none"
     >
       <input
         id="task"
@@ -23,7 +23,7 @@ const AddTaskForm: React.FC<AddTaskFormProps> = ({
         placeholder="New task input"
         value={task}
         onChange={onAddInputChange}
-        className=" rounded-md text-gray-500 w-full p-1 outline-none cursor-text"
+        className=" border rounded-md text-grey w-full p-2 outline-none cursor-text"
       />
       <button
         onClick={handleAddTask}

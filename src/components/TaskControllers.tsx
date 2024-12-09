@@ -17,7 +17,7 @@ const TaskControllers: React.FC<{ todo: ITodo }> = ({ todo }) => {
         />
         <span
           className={`w-5 h-5 border-2 rounded-lg flex items-center justify-center mr-2 transition-all  ${
-            todo.isdone ? 'bg-teal-500 border-teal-500' : ''
+            todo.isdone ? 'bg-teal border-teal' : ''
           }`}
         >
           {todo.isdone && (
@@ -41,7 +41,7 @@ const TaskControllers: React.FC<{ todo: ITodo }> = ({ todo }) => {
         onClick={() => dispatch(deleteTask(todo))}
       >
         <svg
-          className="h-5 w-5 text-gray-500"
+          className="h-5 w-5 text-grey"
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"

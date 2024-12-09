@@ -1,24 +1,21 @@
 import { createSelector } from '@reduxjs/toolkit';
 import { RootState } from './store';
 
-
-
 export const selectTodos = (state: RootState) => state.todos.todos;
 export const selectCurrentFilter = (state: RootState) => state.filter.filter;
 export const selectLoading = (state: RootState) => state.todos.loading;
-
+export const selectColumns= (state: RootState) => state.todos.columns;
 
 export const selectFilteredTasks = createSelector(
     [selectTodos, selectCurrentFilter],
-    
-(todos, filter) => {
+(todos, selectedColumn) => {
         let filtered;
-        switch (filter) {
+        switch (selectedColumn) {
             case 'all':
                 filtered = todos;
                 break;
             case 'completed':
-                filtered = todos.filter(todo => todo.isdone);
+                filtered = todos.filter((todo: { isdone: boolean }) => todo.isdone);
                 break
             case 'active':
                 filtered = todos.filter(todo => !todo.isdone);
@@ -34,3 +31,8 @@ export const selectFilteredTasks = createSelector(
     
     }
 );
+
+
+
+
+

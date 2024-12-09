@@ -1,15 +1,33 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { addTask, deleteTask, fetchTodos, updateTask } from "./todoOperations";
 import { ITodo } from "../types/todo.types";
+import dayjs from "dayjs";
+
 
 
 interface TodoState {
     todos: ITodo[];
+    columns: {
+        "today": ITodo[];
+        "tomorrow": ITodo[];
+        "week": ITodo[];
+       "next week": ITodo[];
+        "later": ITodo[];
+        "completed": ITodo[];
+    },
     loading: boolean;
     error: string | null;
 }
 const initialState: TodoState = {
     todos: [],
+    columns: {
+        "today": [],
+        "tomorrow": [],
+        "week": [],
+        "next week": [],
+        "later": [],
+        "completed": []
+    },
     loading: false,
     error: null,
 };
@@ -26,7 +44,35 @@ const todoSlice = createSlice({
             .addCase(fetchTodos.fulfilled, (state, action: PayloadAction<ITodo[]>) => {
                 state.loading = false;
                 state.todos = action.payload;
-            })
+                state.columns = action.payload.reduce((acc: TodoState['columns'], todo: ITodo) => {
+                    
+                    const schedule = dayjs(todo.schedule).startOf('day');
+                    if ((dayjs().isSame(schedule, 'day'))&& !todo.isdone) {
+                        acc.today.push(todo);
+                    } else if (dayjs().add(1, 'day').isSame(schedule, 'day')) {
+                        acc.tomorrow.push(todo);
+                    } else if (dayjs().endOf('week').isSame(schedule, 'day')) {
+                        acc.week.push(todo);
+                    } else if (dayjs().add(1, 'week').isSame(schedule, 'day')) {
+                        acc["next week"].push(todo);
+                    } else if (dayjs().add(2, 'week').isBefore(schedule)) {
+                        acc.later.push(todo);
+                    }
+                    if (todo.isdone) {
+                        acc.completed.push(todo);
+                    }
+                    return acc;
+                }, {
+                    "today": [],
+                    "tomorrow": [],
+                    "week": [],
+                    "next week": [],
+                    "later": [],
+                    "completed": []
+                }),
+                    state.error = null;
+            }
+            )
             .addCase(updateTask.fulfilled, (state, action:PayloadAction<ITodo>) => {
             const index = state.todos.findIndex(todo => todo.id === action.payload.id);
             if (index !== -1) {
