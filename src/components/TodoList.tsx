@@ -61,7 +61,7 @@ const TodoList: React.FC = () => {
         textActive={currentFilter === 'active' ? 'Show All' : 'Hide completed'}
         classNameShow={` px-2 py-1 rounded-md transition-all w-28 h-8 text-xs hover:scale-105 transition-all duration-300 ${
           isFilterApplied && currentFilter === 'completed'
-            ? 'bg-teal text-white-100'
+            ? 'bg-teal text-white'
             : 'bg-transparent text-grey shadow-md'
         }`}
         classNameHide={`px-2 py-1 rounded-md transition-all w-28 h-8 text-xs hover:scale-105 transition-all duration-300 ${

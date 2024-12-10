@@ -33,7 +33,7 @@ const Task: React.FC<{ todo: ITodo }> = ({ todo }) => {
       handleBlur();
     }
     if (e.key === 'Escape') {
-      setUpdatedTask(todo.task); // Revert changes
+      setUpdatedTask(todo.task);
       setIsEditing(false);
     }
   };
