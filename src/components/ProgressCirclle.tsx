@@ -37,7 +37,12 @@ const ProgressCircle: React.FC<IProgressCircleProps> = ({
     context.beginPath();
     context.arc(canvasX, canvasY, radius, from, to);
     context.lineWidth = lineWidth;
-    context.strokeStyle = '#17a2b8';
+    const gradient = context.createLinearGradient(0, 0, canvas.width, 0);
+
+    gradient.addColorStop(0, '#fff');
+    gradient.addColorStop(0.7, '#551299');
+    gradient.addColorStop(1, '#ff00ff');
+    context.strokeStyle = gradient;
     context.stroke();
 
     context.font = '16px Montserrat';
