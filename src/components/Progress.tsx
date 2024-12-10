@@ -1,8 +1,8 @@
-interface ProgressProps {
+interface IProgressProps {
   total: number;
   completed: number;
 }
-const Progress: React.FC<ProgressProps> = ({ total, completed }) => {
+const Progress: React.FC<IProgressProps> = ({ total, completed }) => {
   return (
     <div>
       <div className="flex relative bg-gray-500 h-7 rounded-full w-full overflow-hidden">

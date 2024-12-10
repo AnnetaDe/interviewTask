@@ -12,6 +12,7 @@ import AddTaskForm from './AddTaskForm';
 import ButtonsFilter from './ButtonsFilter';
 import { setNewFilter } from '../redux/filterSlice';
 import Progress from './Progress';
+import ProgressCirclle from './ProgressCirclle';
 
 const TodoList: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -70,6 +71,7 @@ const TodoList: React.FC = () => {
         }`}
       />
       <Progress total={total} completed={completed} />
+      <ProgressCirclle total={total} completed={completed} />
       <div className="border rounded-md p-1 pl-0">
         <ul className="space-y-1 bg-white overflow-y-auto scrollbar-thin py-1 px-1 max-h-[500px]">
           {todoList.length === 0 && (
