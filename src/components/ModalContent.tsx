@@ -5,9 +5,10 @@ import dayjs from 'dayjs';
 
 import TaskField from './TaskField';
 import DeleteButton from './DeleteButton';
-import CheckBox from './CheckBox';
+
 import { deleteTask, updateTask } from '../redux/todoOperations';
 import { closeModal } from '../redux/modalSlice';
+import SelectPriority from './SelectPriority';
 
 type FormData = {
   task: string;
@@ -45,7 +46,7 @@ const ModalContent = () => {
         autoComplete="off"
         className="space-y-2 flex-col"
       >
-        <div className="inline-block">
+        {/* <div className="inline-block">
           <Controller
             name="isdone"
             control={control}
@@ -57,7 +58,7 @@ const ModalContent = () => {
               />
             )}
           />
-        </div>
+        </div> */}
 
         <div>
           <TaskField
@@ -88,18 +89,19 @@ const ModalContent = () => {
             </div>
           )}
         />
-        <div>
-          <TaskField
-            {...register('priority')}
-            placeholder="Priority"
-            id="priority"
-            type="text"
-            className="w-full border border-gray-300 rounded-lg p-1 focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent text-lg"
-          />
-          <label htmlFor="priority" className="text-xs text-gray-400">
-            priority
-          </label>
-        </div>
+
+        <Controller
+          name="priority"
+          control={control}
+          render={({ field: { onChange, value } }) => (
+            <SelectPriority
+              newValue={value || ''}
+              onChange={onChange}
+              props={{}}
+              //  className="w-full border border-gray-300 rounded-lg p-1 focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent text-lg"
+            />
+          )}
+        />
 
         <button
           className="w-full bg-teal text-white rounded-lg py-2 font-semibold  focus:outline-none focus:ring-2 focus:ring-teal-500 text-xs hover:scale-105 transition-all duration-300"
