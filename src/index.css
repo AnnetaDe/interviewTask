@@ -44,3 +44,14 @@ input:focus {
 input:not(:focus) {
   border-color: transparent;
 }
+.checkmark-path {
+  stroke-dasharray: 40;
+  stroke-dashoffset: 40;
+  animation: draw-checkmark 0.3s ease-in-out forwards;
+}
+
+@keyframes draw-checkmark {
+  to {
+    stroke-dashoffset: 0;
+  }
+}

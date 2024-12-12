@@ -1,71 +1,80 @@
 import { useAppDispatch, useAppSelector } from '../redux/reduxHooks';
-import { selectColumns } from '../redux/selectors';
+import { selectFilteredColumns, selectModalisOpen } from '../redux/selectors';
 import { COLUMNS } from '../dataHelpers/columns.data';
 import KanbanColumn from './KanbanColumn';
 import { DragDropContext, DropResult } from '@hello-pangea/dnd';
-import { updateColumns } from '../redux/todoSlice';
 import { updateTask } from '../redux/todoOperations';
+import dayjs from 'dayjs';
+import ModalPortal from './ModalPortal';
+import { openModal } from '../redux/modalSlice';
+import { ITodo } from '../types/todo.types';
+import ModalContent from './ModalContent';
 
-type TColumnKeys =
-  | 'today'
-  | 'tomorrow'
-  | 'week'
-  | 'next week'
-  | 'later'
-  | 'completed';
+type TColumnKeys = 'today' | 'tomorrow' | 'later' | 'completed';
 
 const Kanban = () => {
-  const columns = useAppSelector(selectColumns);
   const dispatch = useAppDispatch();
+  const isOpen = useAppSelector(selectModalisOpen);
+  const columns = useAppSelector(selectFilteredColumns);
+
+  const editTaskById = (todo: ITodo) => {
+    dispatch(openModal(todo));
+  };
+
   const onDragEnd = (result: DropResult) => {
-    console.log(result);
     const { source, destination, draggableId } = result;
     const destinationColumnId = destination?.droppableId || '';
     const sourceColumnId = source.droppableId;
-
     const sourceColumn = columns[sourceColumnId as TColumnKeys];
     const destinationColumn = columns[destinationColumnId as TColumnKeys];
-
     if (!sourceColumn || !destinationColumn) {
       console.error('Invalid source or destination column ID.');
       return;
     }
-    const task = sourceColumn.find(task => task.id.toString() === draggableId);
+    const task = sourceColumn.find(
+      (task: ITodo) => task.id.toString() === draggableId
+    );
     if (!task) {
-      console.error(`Task with ID ${draggableId} not found in source column.`);
       return;
     }
-
-    if (destinationColumnId === 'completed') {
-      dispatch(updateTask({ ...task, isdone: true }));
+    let updatedTask: ITodo = { ...task };
+    switch (destinationColumnId) {
+      case 'today':
+        updatedTask.schedule = dayjs().toDate();
+        break;
+      case 'tomorrow':
+        updatedTask.schedule = dayjs().add(1, 'day').toDate();
+        break;
+      case 'later':
+        updatedTask.schedule = dayjs().add(2, 'day').toDate();
+        break;
+      case 'completed':
+        updatedTask.isdone = true;
+        break;
     }
-    if (sourceColumnId === 'completed') {
-      dispatch(updateTask({ ...task, isdone: false }));
-    }
+    if (source.droppableId === 'completed') updatedTask.isdone = false;
 
-    dispatch(
-      updateColumns({
-        source: source,
-        destination: destination as { droppableId: string },
-        dragableItem: {
-          task: task,
-        },
-      })
-    );
+    dispatch(updateTask(updatedTask));
   };
 
   return (
     <DragDropContext onDragEnd={onDragEnd}>
-      <div className="grid grid-cols-6 gap-2">
+      <div className="grid grid-cols-4 gap-2 p-4 bg-gray-100 overflow-auto ">
         {COLUMNS.map(column => (
           <KanbanColumn
             key={column.value}
             value={column.value}
             label={column.label}
             items={columns[column.value as TColumnKeys]}
+            editTaskById={editTaskById}
           />
         ))}
       </div>
+      {isOpen && (
+        <ModalPortal title={'Edit task'}>
+          <ModalContent />
+        </ModalPortal>
+      )}
     </DragDropContext>
   );
 };

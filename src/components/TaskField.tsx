@@ -8,7 +8,6 @@ const TaskField = forwardRef<HTMLInputElement, TypeTaskField>((props, ref) => {
       <input
         ref={ref}
         {...props}
-        type="text"
         placeholder="for task edit"
         autoComplete="off"
       />

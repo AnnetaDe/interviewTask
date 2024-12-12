@@ -13,7 +13,7 @@ const Progress: React.FC<IProgressProps> = ({ total, completed }) => {
             background: 'linear-gradient(90deg, #551299, #17a2b8)',
           }}
         >
-          <span className="absolute inset-0 flex items-center justify-center text-white font-medium">
+          <span className="absolute inset-3 flex items-center justify-center text-white font-medium">
             {Math.ceil((completed / total) * 100)}%
           </span>
         </div>

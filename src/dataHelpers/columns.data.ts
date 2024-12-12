@@ -8,14 +8,7 @@ export const COLUMNS = [
 		label: 'Tomorrow',
 		value: 'tomorrow'
 	},
-	{
-		label: 'On this week',
-		value: 'week'
-	},
-	{
-		label: 'On next week',
-		value: 'next week'
-	},
+	
 	{
 		label: 'Later',
 		value: 'later'

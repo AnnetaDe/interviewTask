@@ -41,12 +41,13 @@ const Task: React.FC<{ todo: ITodo }> = ({ todo }) => {
   return (
     <li
       key={todo.id}
-      className="flex justify-start gap-2 border p-2 rounded-md"
+      className="flex justify-start gap-2 border p-2 rounded-md "
     >
       <TaskControllers todo={todo} />
 
       <TaskField
         ref={editRef}
+        type="text"
         value={updatedTask}
         onChange={handleChanges}
         onBlur={handleBlur}

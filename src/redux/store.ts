@@ -4,6 +4,7 @@ import { persistStore, persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, 
 import storage from 'redux-persist/lib/storage';
 import { PersistConfig } from 'redux-persist';
 import { filterReducer } from './filterSlice';
+import { modalReducer } from './modalSlice';
 
 
 const filterPersistConfig: PersistConfig<ReturnType<typeof filterReducer>> = {
@@ -11,7 +12,8 @@ const filterPersistConfig: PersistConfig<ReturnType<typeof filterReducer>> = {
     storage,
 };
 const todoPersistConfig: PersistConfig<ReturnType<typeof todoReducer>> = {
-  key: 'todos',
+    key: 'todos',
+    whitelist: ['todos'],
   storage,
 };
 
@@ -22,6 +24,7 @@ const store = configureStore({
     reducer: {
         todos: persistedTodoReducer, 
         filter: persistedFilterReducer,
+        modal: modalReducer,
     },
     middleware: getDefaultMiddleware => getDefaultMiddleware({
         serializableCheck: {

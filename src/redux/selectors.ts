@@ -1,16 +1,18 @@
 import { createSelector } from '@reduxjs/toolkit';
 import { RootState } from './store';
+import dayjs from 'dayjs';
 
 export const selectTodos = (state: RootState) => state.todos.todos;
 export const selectCurrentFilter = (state: RootState) => state.filter.filter;
 export const selectLoading = (state: RootState) => state.todos.loading;
-export const selectColumns= (state: RootState) => state.todos.columns;
 
+export const selectModalisOpen = (state: RootState) => state.modal.isOpen;
+export const selectModalContent = (state: RootState) => state.modal.content;
 export const selectFilteredTasks = createSelector(
     [selectTodos, selectCurrentFilter],
-(todos, selectedColumn) => {
+(todos, filter) => {
         let filtered;
-        switch (selectedColumn) {
+        switch (filter) {
             case 'all':
                 filtered = todos;
                 break;
@@ -33,6 +35,9 @@ export const selectFilteredTasks = createSelector(
 );
 
 
-
-
-
+export const selectFilteredColumns = createSelector([selectTodos], (todos) => ({
+  today: todos.filter((todo) => dayjs(todo.schedule).isSame(dayjs(), 'day') && !todo.isdone),
+  tomorrow: todos.filter((todo) => dayjs(todo.schedule).isSame(dayjs().add(1, 'day'), 'day') && !todo.isdone),
+  later: todos.filter((todo) => dayjs(todo.schedule).isAfter(dayjs().add(1, 'day'), 'day') && !todo.isdone),
+  completed: todos.filter((todo) => todo.isdone),
+}));

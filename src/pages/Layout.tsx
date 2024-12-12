@@ -4,7 +4,7 @@ import { Suspense } from 'react';
 
 const Layout: React.FC = () => {
   return (
-    <div className="bg-gray-100 min-h-screen">
+    <div className="bg-gray-100 h-screen">
       <Header />
       <div>
         <Suspense fallback={<div>Loading...</div>}>

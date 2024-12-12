@@ -21,7 +21,8 @@ export const addTask = createAsyncThunk<ITodo, ITodo>(
 export const updateTask = createAsyncThunk<ITodo, ITodo>(
     'todos/updateTodo',
     async (task) => {
-    const response = await todoApi.put<ITodo>(`/todo/${task.id}`, task);
+        const response = await todoApi.put<ITodo>(`/todo/${task.id}`, task);
+        console.log('updated',response);
     return response.data;
     });  
 export const deleteTask = createAsyncThunk<ITodo, ITodo>(
