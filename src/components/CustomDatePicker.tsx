@@ -10,9 +10,14 @@ interface CustomDatePickerProps {
     date: Date | null,
     event?: React.SyntheticEvent<any> | undefined
   ) => void;
+  id: string;
 }
 
-const CustomDatePicker: FC<CustomDatePickerProps> = ({ date, onChange }) => {
+const CustomDatePicker: FC<CustomDatePickerProps> = ({
+  id,
+  date,
+  onChange,
+}) => {
   const filterPassedTime = (time: Date) => {
     const currentDate = new Date();
     const selectedDate = new Date(time);
@@ -21,6 +26,10 @@ const CustomDatePicker: FC<CustomDatePickerProps> = ({ date, onChange }) => {
   return (
     <div>
       <DatePicker
+        customInput={
+          <input className="text-sm text-gray-500 p-1 rounded-sm border hover:border-teal" />
+        }
+        id={id}
         selected={date}
         onChange={onChange}
         minDate={new Date()}

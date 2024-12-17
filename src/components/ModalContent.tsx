@@ -72,32 +72,53 @@ const ModalContent = () => {
             edit task
           </label>
         </div>
-        <Controller
-          name="schedule"
-          control={control}
-          render={({ field: { onChange, value } }) => (
-            <CustomDatePicker
-              date={
-                value instanceof Date ? value : value ? new Date(value) : null
-              }
-              onChange={onChange}
+        <div className="flex gap-1">
+          <div>
+            <Controller
+              name="schedule"
+              control={control}
+              render={({ field: { onChange, value } }) => (
+                <CustomDatePicker
+                  id="edit-schedule"
+                  date={
+                    value instanceof Date
+                      ? value
+                      : value
+                      ? new Date(value)
+                      : null
+                  }
+                  onChange={onChange}
+                />
+              )}
             />
-          )}
-        />
-
-        <Controller
-          name="priority"
-          control={control}
-          render={({ field: { onChange, value } }) => (
-            <SelectPriority
-              newValue={value || ''}
-              onChange={onChange}
-              props={{}}
-              //  className="w-full border border-gray-300 rounded-lg p-1 focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent text-lg"
+            <label
+              htmlFor="edit-schedule"
+              className="text-xs text-gray-400 mb-0"
+            >
+              edit schedule
+            </label>
+          </div>
+          <div>
+            <Controller
+              name="priority"
+              control={control}
+              render={({ field: { onChange, value } }) => (
+                <SelectPriority
+                  id="edit-priority"
+                  newValue={value || ''}
+                  onChange={onChange}
+                  props={{}}
+                />
+              )}
             />
-          )}
-        />
-
+            <label
+              htmlFor="edit-priority"
+              className="text-xs text-gray-400 mb-0"
+            >
+              edit priority
+            </label>
+          </div>
+        </div>
         <button
           className="w-full bg-teal text-white rounded-lg py-2 font-semibold  focus:outline-none focus:ring-2 focus:ring-teal-500 text-xs hover:scale-105 transition-all duration-300"
           type="submit"

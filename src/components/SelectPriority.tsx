@@ -10,6 +10,7 @@ interface SelectPriorityProps {
   props: any;
   onChange: (value: string) => void;
   newValue: string;
+  id: string;
 }
 
 const SelectPriority: React.FC<SelectPriorityProps> = props => {
@@ -22,6 +23,7 @@ const SelectPriority: React.FC<SelectPriorityProps> = props => {
   return (
     <div>
       <Select
+        id={props.id}
         styles={{
           control: (base, state) => ({
             ...base,

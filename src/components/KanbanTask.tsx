@@ -28,18 +28,21 @@ const KanbanTask = ({ value, todo, editTaskById }: IKanbanTaskProps) => {
         <p>Due: {dayjs(todo.schedule).format('YYYY-MM-DD HH:mm')}</p>
       </div>
       <button
-        className="absolute rounded-lg  right-1 top-1"
+        // className=""
         onClick={() => editTaskById(todo)}
       >
         <FontAwesomeIcon
           icon={faGear}
-          className="text-gray-500 hover:text-gray-700  transition-all duration-300 ease-in-out h-5 w-5"
+          className={`text-gray-500 hover:text-gray-700  transition-transform duration-300 ease-in-out hover:rotate-180 h-5 w-5 absolute rounded-lg  right-2 top-2 ${
+            todo.isdone ? 'hidden' : ''
+          }`}
         />
+
         {todo.isdone && (
           <FontAwesomeIcon
             icon={faCircleCheck}
             size="xl"
-            className="absolute right-10"
+            className="absolute right-2 top-2 text-green-500 transition-none"
           />
         )}
       </button>

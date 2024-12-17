@@ -35,15 +35,16 @@ button {
 }
 input {
   outline: none;
+ 
 }
 
 input:focus {
   border-color: var(--accents);
 }
 
-input:not(:focus) {
+/* input:not(:focus) {
   border-color: transparent;
-}
+} */
 .checkmark-path {
   stroke-dasharray: 40;
   stroke-dashoffset: 40;
