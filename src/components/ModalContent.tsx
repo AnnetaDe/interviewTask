@@ -9,6 +9,7 @@ import DeleteButton from './DeleteButton';
 import { deleteTask, updateTask } from '../redux/todoOperations';
 import { closeModal } from '../redux/modalSlice';
 import SelectPriority from './SelectPriority';
+import CustomDatePicker from './CustomDatePicker';
 
 type FormData = {
   task: string;
@@ -75,18 +76,12 @@ const ModalContent = () => {
           name="schedule"
           control={control}
           render={({ field: { onChange, value } }) => (
-            <div>
-              <input
-                id="schedule"
-                type="date"
-                value={value ? dayjs(value).format('YYYY-MM-DD') : ''}
-                onChange={onChange}
-                className="w-full border border-gray-300 rounded-lg p-1 focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent"
-              />{' '}
-              <label htmlFor="schedule" className="block text-xs text-gray-400">
-                schedule
-              </label>
-            </div>
+            <CustomDatePicker
+              date={
+                value instanceof Date ? value : value ? new Date(value) : null
+              }
+              onChange={onChange}
+            />
           )}
         />
 

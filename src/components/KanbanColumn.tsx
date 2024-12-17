@@ -15,10 +15,10 @@ const KanbanColumn = ({ value, label, items, editTaskById }: IKanbanColumn) => {
         <div ref={provided.innerRef} {...provided.droppableProps}>
           <div
             key={value}
-            className="bg-white shadow-md rounded-lg p-4 flex flex-col h-[calc(100vh-120px)] "
+            className="bg-white shadow-md rounded-lg p-4 flex flex-col h-[calc(100vh-120px)]"
           >
             <h2 className="text-lg mb-4 text-grey">{label}</h2>
-            <ul className="flex-1 overflow-y-auto space-y-2">
+            <ul className="flex-1 overflow-y-auto space-y-2 scrollbar-thin pr-1">
               {provided.placeholder}
               {items.map((todo: ITodo) => (
                 <Draggable
