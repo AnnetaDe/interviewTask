@@ -2,7 +2,6 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
 import { FC } from 'react';
-import dayjs from 'dayjs';
 
 interface CustomDatePickerProps {
   date: Date | null;

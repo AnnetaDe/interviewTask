@@ -1,7 +1,6 @@
 import { Controller, useForm } from 'react-hook-form';
 import { useAppDispatch, useAppSelector } from '../redux/reduxHooks';
 import { selectModalContent } from '../redux/selectors';
-import dayjs from 'dayjs';
 
 import TaskField from './TaskField';
 import DeleteButton from './DeleteButton';
