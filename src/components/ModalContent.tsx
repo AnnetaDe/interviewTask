@@ -46,20 +46,6 @@ const ModalContent = () => {
         autoComplete="off"
         className="space-y-2 flex-col"
       >
-        {/* <div className="inline-block">
-          <Controller
-            name="isdone"
-            control={control}
-            render={({ field: { onChange, value } }) => (
-              <CheckBox
-                checked={value}
-                onChange={onChange}
-                svgClassName="transition-transform transform scale-90 h-12 w-12"
-              />
-            )}
-          />
-        </div> */}
-
         <div>
           <TaskField
             {...register('task')}

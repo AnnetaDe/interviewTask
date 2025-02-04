@@ -63,6 +63,4 @@ const SelectPriority: React.FC<SelectPriorityProps> = props => {
   );
 };
 
-// SelectPriority.displayName = 'SelectPriority';
-
 export default SelectPriority;
